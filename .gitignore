@@ -3,3 +3,5 @@
 *.pyc
 RestaurantDB
 *.csv
+.idea
+venv
