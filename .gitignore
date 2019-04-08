@@ -1,0 +1,5 @@
+.DS_STORE
+.project
+*.pyc
+RestaurantDB
+*.csv
