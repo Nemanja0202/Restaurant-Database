@@ -34,7 +34,36 @@ class Normativ:
         c.execute("SELECT * FROM normativ")
         rows = c.fetchall()
         for row in rows:
-            print("Article ID: {}\tName: {}\tNormativ ID: {}\tName: {}\tNormativ Amount: {}". format(row[0], row[1], row[2], row[3], row[4]))
+            print("Article ID: {}\tName: {}\tNormativ ID: {}\tName: {}\tNormativ Amount: {}".format(row[0], row[1], row[2], row[3], row[4]))
+
+    @staticmethod
+    def get_by_art_id(id):
+        c.execute("SELECT * FROM normativ WHERE art_id=:art_id", {'art_id': id})
+        rows = c.fetchall()
+        for row in rows:
+            print("Article ID: {}\tName: {}\tNormativ ID: {}\tName: {}\tNormativ Amount: {}".format(row[0], row[1], row[2], row[3], row[4]))
+
+    @staticmethod
+    def get_by_art_name(name):
+        c.execute("SELECT * FROM normativ WHERE art_name LIKE :art_name", {'art_name': ('%'+name+'%')})
+        rows = c.fetchall()
+        for row in rows:
+            print("Article ID: {}\tName: {}\tNormativ ID: {}\tName: {}\tNormativ Amount: {}".format(row[0], row[1], row[2], row[3], row[4]))
+
+    @staticmethod
+    def get_by_norm_id(id):
+        c.execute("SELECT * FROM normativ WHERE norm_id=:norm_id", {'norm_id': id})
+        rows = c.fetchall()
+        for row in rows:
+            print("Article ID: {}\tName: {}\tNormativ ID: {}\tName: {}\tNormativ Amount: {}".format(row[0], row[1], row[2], row[3], row[4]))
+
+    @staticmethod
+    def get_by_norm_name(name):
+        c.execute("SELECT * FROM normativ WHERE norm_name LIKE :norm_name", {'norm_name': ('%'+name+'%')})
+        rows = c.fetchall()
+        for row in rows:
+            print("Article ID: {}\tName: {}\tNormativ ID: {}\tName: {}\tNormativ Amount: {}".format(row[0], row[1], row[2], row[3], row[4]))
+
 
     @staticmethod
     def remove_by_art(id):

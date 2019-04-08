@@ -1,6 +1,4 @@
-import sqlite3
 from articles import *
-from invoice import *
 
 conn = sqlite3.connect('RestaurantDB')
 c = conn.cursor()
@@ -84,12 +82,6 @@ class Stock:
             c.execute("DELETE FROM stock WHERE stock_id=:stock_id", {'stock_id': id})
             print('Item *{}* deleted'.format(id))
     
-    @staticmethod
-    def remove_by_name(name):
-        with conn:
-            c.execute("DELETE FROM stock WHERE stock_name=:stock_name", {'stock_name': name})
-            print('Item *{}* deleted'.format(name))
-    
     @staticmethod                    
     def buy(id, number):
         with conn:
@@ -97,4 +89,7 @@ class Stock:
             amount = c.fetchone()
             amount = float(amount[0])
             c.execute("UPDATE stock SET stock_amount=:stock_amount WHERE stock_id=:stock_id", {'stock_id': id, 'stock_amount': (amount+number)})
+            c.execute("SELECT stock_amount, stock_price FROM stock WHERE stock_id=:stock_id", {'stock_id': id})
+            total = c.fetchone()
+            c.execute("UPDATE stock SET stock_total=:stock_total WHERE stock_id=:stock_id", {'stock_id': id, 'stock_total': (total[0]*total[1])})
             print('Stock amount for item *{}* increased by {}'.format(id, number))

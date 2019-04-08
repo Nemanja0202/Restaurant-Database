@@ -1,5 +1,4 @@
 import sqlite3
-from stock import *
 from invoice import *
 
 conn = sqlite3.connect('RestaurantDB')
@@ -85,12 +84,6 @@ class Articles:
         with conn:
             c.execute("DELETE FROM articles WHERE art_id=:art_id", {'art_id': id})
             print('Article *{}* deleted'.format(id))
-            
-    @staticmethod
-    def remove_by_name(name):
-        with conn:
-            c.execute("DELETE FROM articles WHERE art_name=:art_name", {'art_name': name})
-            print('Article *{}* deleted'.format(name))
     
     @staticmethod
     def sell(id, number):
